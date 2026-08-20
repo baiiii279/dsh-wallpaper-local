@@ -16,18 +16,40 @@
 ## 安装
 
 ```sh
-# 方式一:本地目录安装(推荐开发)
+# 方式一:从 GitHub 安装(推荐)
+dsh plugin --profile web add github:baiiii279/dsh-wallpaper-local
+
+# 方式二:本地目录安装(开发)
 dsh plugin --profile web add file:C:/path/to/dsh-wallpaper-local
 
-# 方式二:手动放入 profile
+# 方式三:手动放入 profile
 # 把整个目录复制到 ~/.dsh/profiles/web/node_modules/dsh-wallpaper-local/
 # 并在 ~/.dsh/profiles/web/cordis.patch.yml 加入:
 # - insert:
-#     - id: dsh-wallpaper
+#     - id: dsh-wallpaper-local
 #       name: dsh-wallpaper-local
 ```
 
 然后**重启 dsh web**(组合级插件需要重启生效)。
+
+## 首次使用准备(可选但推荐)
+
+插件开箱即用(能列出文件夹里的图片与视频),但要获得完整体验,建议运行一次预生成脚本(`tools/`)——它们会生成缩略图、图片尺寸/亮度元数据,并从 `scene.pkg` 提取真实壁纸:
+
+```sh
+# 需要 Node + sharp(可从 DSH profile 的 node_modules 引用,或 npm i -g sharp)
+node tools/make-thumbs.js    # 生成缩略图 + meta.json(方形/低清过滤依赖它)
+node tools/extract-pkgs.js   # 从 scene.pkg 提取壁纸纹理(pkg-meta.json)
+```
+
+> 不跑脚本也能用,但:方形/低清图片不会自动过滤、没有分辨率角标、不会有"我的壁纸"里提取的高清图、网格缩略图加载会稍慢。
+
+## 平台与权限
+
+- **平台**:仅 Web profile(`dsh web`)可用;Electron 桌面端(`file://` 加载)不支持。
+- **Windows**:自动读 Steam 注册表 + `libraryfolders.vdf` 定位壁纸目录(支持多 Steam 库)。
+- **macOS/Linux**:无 `reg` 命令,必须手动在配置里写 `root`(见下)。
+- **权限**:插件需要读取壁纸目录(Steam 工坊内容)并写入数据目录(`~/.dsh/wallpaper-data`);视频以 `node:fs` 流式直读,绕过 DSH 文件沙箱。
 
 ## 使用
 
@@ -69,7 +91,7 @@ dsh-wallpaper-local/
 如需自定义,在 profile 的 `cordis.patch.yml` 里按 id 覆盖:
 
 ```yaml
-- id: dsh-wallpaper
+- id: dsh-wallpaper-local
   name: dsh-wallpaper-local
   config:
     root: 'E:/SteamLibrary/steamapps/workshop/content/431960'

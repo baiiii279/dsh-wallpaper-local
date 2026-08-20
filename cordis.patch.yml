@@ -1,4 +1,6 @@
 # dsh-wallpaper-local bundle patch: mount the wallpaper plugin row.
+# The id is unique to this package to avoid colliding with other wallpaper
+# plugins that may also mount a row named "dsh-wallpaper".
 - insert:
-    - id: dsh-wallpaper
+    - id: dsh-wallpaper-local
       name: dsh-wallpaper-local

@@ -1,6 +1,6 @@
 {
   "name": "dsh-wallpaper-local",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "DSH 澹佺焊鎻掍欢:鏈湴鏂囦欢澶瑰绾稿簱 + 椤靛唴鎸戦€夊櫒 + 鍙皟鍘嬫殫閬僵/閫忔槑搴?妯＄硦/闈㈡澘鐜荤拑鎰?+ 鎸佷箙鍖?閲嶅惎涓嶄涪",
   "type": "module",
   "main": "lib/index.js",
