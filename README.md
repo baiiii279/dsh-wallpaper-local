@@ -59,19 +59,24 @@ dsh-wallpaper-local/
 
 ## 配置
 
-插件里的路径硬编码在 `lib/index.js` 顶部常量:
+插件路径**自动解析,无需修改代码**:
 
-```js
-ROOT     // 壁纸扫描根目录(Steam 工坊内容目录)
-THUMBS   // 缩略图输出目录
-SCREENS  // 大图压缩版本目录
-META     // 图片尺寸/亮度元数据
-CONFIG   // 配置持久化文件
-PKG_DIR  // scene.pkg 提取输出
-PKG_META // 提取结果元数据
+| 项 | 解析顺序 |
+|---|---|
+| 壁纸扫描根目录 | ① 插件 `config.root` → ② 自动读 Steam 注册表 `HKCU\Software\Valve\Steam\SteamPath` → ③ 兜底 `D:\steam\...` |
+| 数据目录(缩略图/提取/配置) | ① 插件 `config.workDir` → ② `$DSH_HOME/wallpaper-data`(默认 `~/.dsh/wallpaper-data`) |
+
+如需自定义,在 profile 的 `cordis.patch.yml` 里按 id 覆盖:
+
+```yaml
+- id: dsh-wallpaper
+  name: dsh-wallpaper-local
+  config:
+    root: 'E:/SteamLibrary/steamapps/workshop/content/431960'
+    workDir: 'C:/Users/you/dsh-wallpaper-data'
 ```
 
-按你的环境改这几行即可。缩略图/元数据用 `tools/extract-pkgs.js` 与 sharp 预生成。
+`tools/extract-pkgs.js` 支持同样的环境变量覆盖:`WALLPAPER_ROOT` / `WALLPAPER_WORK`。
 
 ## 已知限制
 

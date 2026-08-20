@@ -1,14 +1,18 @@
 // Extract main texture JPEGs from Wallpaper Engine scene.pkg (PKGV container).
 // Each scene.pkg contains a .tex (TEXV0005) whose data embeds JPEGs; the first
 // JPEG is the full-res wallpaper artwork. Output: pkg/<folderId>.jpg + thumbs.
+// Paths default to the Steam registry / DSH home; override via env:
+//   WALLPAPER_ROOT, WALLPAPER_WORK
 const fs = require('fs')
 const path = require('path')
-const sharp = require('C:/Users/baiiii/.dsh/profiles/node_modules/sharp')
+const sharp = require('sharp')
 
-const ROOT = 'D:/steam/steamapps/workshop/content/431960'
-const OUT = 'C:/Users/baiiii/Desktop/dsh/.wallpaper/pkg'
-const THUMBS = 'C:/Users/baiiii/Desktop/dsh/.wallpaper/thumbs'
-const META = 'C:/Users/baiiii/Desktop/dsh/.wallpaper/pkg-meta.json'
+const DSH_HOME = process.env.DSH_HOME || (process.env.USERPROFILE ? process.env.USERPROFILE + '/.dsh' : '.')
+const WORK = process.env.WALLPAPER_WORK || DSH_HOME + '/wallpaper-data'
+const ROOT = process.env.WALLPAPER_ROOT || 'D:/steam/steamapps/workshop/content/431960'
+const OUT = WORK + '/pkg'
+const THUMBS = WORK + '/thumbs'
+const META = WORK + '/pkg-meta.json'
 
 fs.mkdirSync(OUT, { recursive: true })
 
