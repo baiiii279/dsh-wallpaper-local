@@ -1,0 +1,4 @@
+# dsh-wallpaper-local bundle patch: mount the wallpaper plugin row.
+- insert:
+    - id: dsh-wallpaper
+      name: dsh-wallpaper-local
