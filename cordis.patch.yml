@@ -3,4 +3,4 @@
 # plugins that may also mount a row named "dsh-wallpaper".
 - insert:
     - id: dsh-wallpaper-local
-      name: dsh-wallpaper-local
+      name: '@baiiii/dsh-wallpaper-local'
