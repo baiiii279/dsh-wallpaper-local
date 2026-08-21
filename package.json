@@ -1,7 +1,7 @@
 {
-  "name": "dsh-wallpaper-local",
-  "version": "1.0.17",
-  "description": "DSH 澹佺焊鎻掍欢:鏈湴鏂囦欢澶瑰绾稿簱 + 椤靛唴鎸戦€夊櫒 + 鍙皟鍘嬫殫閬僵/閫忔槑搴?妯＄硦/闈㈡澘鐜荤拑鎰?+ 鎸佷箙鍖?閲嶅惎涓嶄涪",
+  "name": "@baiiii/dsh-wallpaper-local",
+  "version": "1.0.18",
+  "description": "DSH wallpaper plugin: local Wallpaper Engine/Steam picker, video background, scene.pkg texture extraction",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
@@ -27,5 +27,24 @@
   "peerDependencies": {
     "react": "^18.2.0",
     "@deepseek-ai/cordis": "^4.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baiiii279/dsh-wallpaper-local.git"
+  },
+  "homepage": "https://github.com/baiiii279/dsh-wallpaper-local",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "wallpaper",
+    "plugin",
+    "wallpaper-engine",
+    "cordis"
+  ],
+  "bugs": {
+    "url": "https://github.com/baiiii279/dsh-wallpaper-local/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
