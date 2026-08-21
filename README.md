@@ -2,7 +2,7 @@
 
 把本地 Wallpaper Engine / Steam 壁纸文件夹变成 DSH(DeepSeek Harness)页面背景的插件。带页内挑选器、可调外观、视频背景、以及从 `scene.pkg` 里提取真实壁纸的能力。
 
-> 本插件为个人用途定制(硬编码了本机路径,见 [配置](#配置));开源供参考与二次开发。
+> 已发布到 **npm**:`@baiiii/dsh-wallpaper-local`。路径自动解析(Steam 注册表 + DSH home 数据目录),见 [配置](#配置)。
 
 ## 功能
 
@@ -16,18 +16,21 @@
 ## 安装
 
 ```sh
-# 方式一:从 GitHub 安装(推荐)
+# 方式一:从 npm 安装(推荐)
+dsh plugin --profile web add @baiiii/dsh-wallpaper-local
+
+# 方式二:从 GitHub 安装
 dsh plugin --profile web add github:baiiii279/dsh-wallpaper-local
 
-# 方式二:本地目录安装(开发)
+# 方式三:本地目录安装(开发)
 dsh plugin --profile web add file:C:/path/to/dsh-wallpaper-local
 
-# 方式三:手动放入 profile
-# 把整个目录复制到 ~/.dsh/profiles/web/node_modules/dsh-wallpaper-local/
+# 方式四:手动放入 profile
+# 把整个目录复制到 ~/.dsh/profiles/web/node_modules/@baiiii/dsh-wallpaper-local/
 # 并在 ~/.dsh/profiles/web/cordis.patch.yml 加入:
 # - insert:
 #     - id: dsh-wallpaper-local
-#       name: dsh-wallpaper-local
+#       name: '@baiiii/dsh-wallpaper-local'
 ```
 
 然后**重启 dsh web**(组合级插件需要重启生效)。
@@ -92,7 +95,7 @@ dsh-wallpaper-local/
 
 ```yaml
 - id: dsh-wallpaper-local
-  name: dsh-wallpaper-local
+  name: '@baiiii/dsh-wallpaper-local'
   config:
     root: 'E:/SteamLibrary/steamapps/workshop/content/431960'
     workDir: 'C:/Users/you/dsh-wallpaper-data'
